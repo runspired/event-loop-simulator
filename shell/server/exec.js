@@ -4,7 +4,7 @@ const ASYNC_CALL_STACK = require("./trace").ASYNC_CALL_STACK;
 
 module.exports = function executeCallback(task) {
   if (task.cancelled) {
-    console.log("Skipping PID:" + task._id);
+    console.log("Skipping Cancelled PID:" + task._id);
     return;
   }
   ASYNC_CALL_STACK.push(task);

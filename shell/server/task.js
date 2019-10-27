@@ -15,16 +15,16 @@ class Task {
     let sLen = ASYNC_CALL_STACK.length;
     let parent = sLen > 0 ? ASYNC_CALL_STACK[sLen - 1] : null;
 
-    let p = parent;
-    let stack = [];
-    while (p) {
-      stack.unshift(p._id);
-      p = p.parent;
-    }
-    stack.push(this._id);
-    for (let i = 0; i < stack.length; i++) {
-      console.log(`${leftPad("PID:" + stack[i], i)}`);
-    }
+    // let p = parent;
+    // let stack = [];
+    // while (p) {
+    //   stack.unshift(p._id);
+    //   p = p.parent;
+    // }
+    // stack.push(this._id);
+    // for (let i = 0; i < stack.length; i++) {
+    //   console.log(`${leftPad("PID:" + stack[i], i)}`);
+    // }
 
     this.cb = cb;
     this.trace = createTrace(label);
