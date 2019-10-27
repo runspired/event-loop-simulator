@@ -19,12 +19,7 @@ function trace(type) {
 }
 
 const INTERNAL_MODULES = [
-  "event-loop-simulator/server.js",
-  "event-loop-simulator/queues/animate.js",
-  "event-loop-simulator/queues/promise.js",
-  "event-loop-simulator/server/trace.js",
-  "event-loop-simulator/server/exec.js",
-  "event-loop-simulator/server/task.js",
+  "event-loop-simulator/shell/",
   "internal/modules/cjs/loader.js"
 ];
 

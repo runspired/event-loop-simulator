@@ -1,6 +1,6 @@
-const requestAnimationFrame = require("./queues/animate").animate;
-const setTimeout = require("./queues/timeout").setTimeout;
-const resolve = require("./queues/promise").resolve;
+const requestAnimationFrame = require("./shell/queues/animate").animate;
+const setTimeout = require("./shell/queues/timeout").setTimeout;
+const resolve = require("./shell/queues/promise").resolve;
 
 /*
 // use this resolve function to run the same program
