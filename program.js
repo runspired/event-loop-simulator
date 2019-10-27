@@ -77,8 +77,14 @@ function doLotsOfAsync() {
   });
 }
 
+function forceRender() {
+  requestAnimationFrame(forceRender);
+}
+
 module.exports = function program() {
   doLotsOfAsync();
+
+  forceRender();
 
   return state;
 };
