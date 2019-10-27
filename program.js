@@ -2,9 +2,13 @@ const requestAnimationFrame = require("./queues/animate").animate;
 const setTimeout = require("./queues/timeout").setTimeout;
 const resolve = require("./queues/promise").resolve;
 
+/*
+// use this resolve function to run the same program
+// in the browser
 function resolve(cb) {
   Promise.resolve().then(cb);
 }
+*/
 
 let actions = [];
 
