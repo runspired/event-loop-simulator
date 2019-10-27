@@ -9,7 +9,13 @@ const flushAnimate = require("./queues/animate").flush;
 const hasAnimationCallbacks = require("./queues/animate").hasPendingCallbacks;
 const flushTimer = require("./queues/timeout").flush;
 const exec = require("./server/exec");
-const renderContent = require("./modes/retained");
+const renderContentRetained = require("./modes/retained");
+const renderContentImmediate = require("./modes/immediate");
+
+const renderContent =
+  process.env.RETAINED_RENDER_MODE === "true"
+    ? renderContentRetained
+    : renderContentImmediate;
 
 const state = exec({ cb: program });
 
