@@ -1,6 +1,6 @@
 let currentFrame = [];
 const exec = require("../server/exec");
-const captureTrace = require("../server/trace").trace;
+const createTask = require("../server/task");
 
 function hasPendingCallbacks() {
   return currentFrame.length > 0;
@@ -16,12 +16,7 @@ function flush() {
 }
 
 function animate(cb) {
-  let trace = captureTrace("requestAnimationFrame");
-
-  currentFrame.push({
-    cb,
-    trace
-  });
+  currentFrame.push(createTask(cb, "requestAnimationFrame"));
 }
 
 module.exports = {

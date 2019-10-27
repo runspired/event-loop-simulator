@@ -1,14 +1,9 @@
-const captureTrace = require("../server/trace").trace;
+const createTask = require("../server/task");
 
 let microtasks = [];
 
 function resolve(cb) {
-  let trace = captureTrace("Promise.resolve");
-
-  microtasks.push({
-    cb,
-    trace
-  });
+  microtasks.push(createTask(cb, "Promise.resolve"));
 }
 
 function flush() {

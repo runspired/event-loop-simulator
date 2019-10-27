@@ -24,6 +24,7 @@ const INTERNAL_MODULES = [
   "event-loop-simulator/queues/promise.js",
   "event-loop-simulator/server/trace.js",
   "event-loop-simulator/server/exec.js",
+  "event-loop-simulator/server/task.js",
   "internal/modules/cjs/loader.js"
 ];
 

@@ -1,6 +1,6 @@
 let pendingTimers = [];
 const exec = require("../server/exec");
-const captureTrace = require("../server/trace").trace;
+const createTask = require("../server/task");
 
 function flush() {
   let time = Date.now();
@@ -15,9 +15,8 @@ function flush() {
 }
 
 function setTimeout(cb, ms = 0) {
-  let trace = captureTrace("setTimeout");
-  let time = Date.now() + ms;
-  let timer = { cb, trace, time };
+  let timer = createTask(cb, "setTimeout");
+  timer.time = Date.now() + ms;
   insertTimer(timer);
 }
 
