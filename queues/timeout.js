@@ -1,12 +1,13 @@
 let pendingTimers = [];
 const exec = require("../server/exec");
+const captureTrace = require("../server/trace").trace;
 
 function flush() {
   let time = Date.now();
   let nextTimer = pendingTimers[0];
 
   if (nextTimer && nextTimer.time <= time) {
-    exec(nextTimer.cb);
+    exec(nextTimer);
     pendingTimers.shift();
     return true;
   }
@@ -14,8 +15,9 @@ function flush() {
 }
 
 function setTimeout(cb, ms = 0) {
+  let trace = captureTrace("setTimeout");
   let time = Date.now() + ms;
-  let timer = { cb, time };
+  let timer = { cb, trace, time };
   insertTimer(timer);
 }
 

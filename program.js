@@ -31,6 +31,7 @@ function doLotsOfAsync() {
       actions.push("15");
       resolve(() => {
         actions.push("16");
+        throw new Error("Where am I?");
       });
     });
   });

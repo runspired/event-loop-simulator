@@ -1,13 +1,20 @@
 const flushResolve = require("../queues/promise").flush;
+const stitch = require("./trace").stitch;
+const ASYNC_CALL_STACK = require("./trace").ASYNC_CALL_STACK;
 
-module.exports = function executeCallback(cb) {
+module.exports = function executeCallback(task) {
+  ASYNC_CALL_STACK.push(task.trace);
   let result;
   try {
-    result = cb();
+    result = task.cb();
   } catch (e) {
-    process.exit(e);
+    e = stitch(e, task.trace);
+
+    console.log(e.message);
+    console.log(e.stack);
   } finally {
     flushResolve();
   }
+  ASYNC_CALL_STACK.shift();
   return result;
 };

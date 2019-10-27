@@ -11,7 +11,7 @@ const flushTimer = require("./queues/timeout").flush;
 const exec = require("./server/exec");
 const renderContent = require("./modes/retained");
 
-const state = exec(program);
+const state = exec({ cb: program });
 
 while (TOTAL_CYCLES < MAX_CYCLES && SKIPPED_CYCLES < MAX_CYCLES) {
   let cycleStart = Date.now();
