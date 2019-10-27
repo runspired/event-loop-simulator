@@ -4,13 +4,15 @@ let SKIPPED_CYCLES = 0;
 let NEXT_RENDER_DEADLINE = Date.now() + 16;
 let programIsStale = true;
 const MAX_CYCLES = 10;
-const program = require("../program");
 const flushAnimate = require("./queues/animate").flush;
 const hasAnimationCallbacks = require("./queues/animate").hasPendingCallbacks;
 const flushTimer = require("./queues/timeout").flush;
 const exec = require("./server/exec");
 const renderContentRetained = require("./modes/retained");
 const renderContentImmediate = require("./modes/immediate");
+
+let programSrc = process.argv[2] || "../program";
+const program = require(programSrc);
 
 const renderContent =
   process.env.RETAINED_RENDER_MODE === "true"
