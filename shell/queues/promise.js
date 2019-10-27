@@ -3,7 +3,9 @@ const createTask = require("../server/task");
 let microtasks = [];
 
 function resolve(cb) {
-  microtasks.push(createTask(cb, "Promise.resolve"));
+  let task = createTask(cb, "Promise.resolve");
+  microtasks.push(task);
+  return () => task.cancel();
 }
 
 function flush() {

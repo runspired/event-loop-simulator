@@ -12,7 +12,7 @@ function trace(type) {
       lines[0] = e.message;
       e.stack = lines.join("\n");
       e.traceId = id;
-      e.traces = ASYNC_CALL_STACK.splice(0);
+      e.traces = ASYNC_CALL_STACK.slice(0).map(t => t.trace);
       return e;
     }
   }

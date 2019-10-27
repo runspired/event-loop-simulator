@@ -16,7 +16,9 @@ function flush() {
 }
 
 function animate(cb) {
-  currentFrame.push(createTask(cb, "requestAnimationFrame"));
+  let task = createTask(cb, "requestAnimationFrame");
+  currentFrame.push(task);
+  return () => task.cancel();
 }
 
 module.exports = {

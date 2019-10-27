@@ -18,6 +18,7 @@ function setTimeout(cb, ms = 0) {
   let timer = createTask(cb, "setTimeout");
   timer.time = Date.now() + ms;
   insertTimer(timer);
+  return () => timer.cancel();
 }
 
 function insertTimer(timer) {

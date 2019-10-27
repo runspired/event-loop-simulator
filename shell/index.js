@@ -10,6 +10,7 @@ const flushTimer = require("./queues/timeout").flush;
 const exec = require("./server/exec");
 const renderContentRetained = require("./modes/retained");
 const renderContentImmediate = require("./modes/immediate");
+const createTask = require("./server/task");
 
 let programSrc = process.argv[2] || "../program";
 const program = require(programSrc);
@@ -19,7 +20,7 @@ const renderContent =
     ? renderContentRetained
     : renderContentImmediate;
 
-const state = exec({ cb: program });
+const state = exec(createTask(program, "App Load"));
 
 while (TOTAL_CYCLES < MAX_CYCLES && SKIPPED_CYCLES < MAX_CYCLES) {
   let cycleStart = Date.now();
