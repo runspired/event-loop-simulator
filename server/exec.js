@@ -10,8 +10,10 @@ module.exports = function executeCallback(task) {
   } catch (e) {
     e = stitch(e, task.trace);
 
-    console.log(e.message);
-    console.log(e.stack);
+    if (process.env.LOG_ERRORS === "true") {
+      console.log(e.message);
+      console.log(e.stack);
+    }
   } finally {
     flushResolve();
   }
