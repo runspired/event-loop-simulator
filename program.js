@@ -12,7 +12,7 @@ function resolve(cb) {
 
 let actions = [];
 function log(str) {
-  log(str);
+  actions.push(str);
   console.log(str);
 }
 
