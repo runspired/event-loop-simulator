@@ -11,6 +11,10 @@ function resolve(cb) {
 */
 
 let actions = [];
+function log(str) {
+  log(str);
+  console.log(str);
+}
 
 const state = {
   get path() {
@@ -23,57 +27,57 @@ const state = {
 
 function doLotsOfAsync() {
   requestAnimationFrame(() => {
-    actions.push("9");
+    log("9");
     resolve(() => {
-      actions.push("10");
+      log("10");
     });
     requestAnimationFrame(() => {
-      actions.push("15");
+      log("15");
       resolve(() => {
-        actions.push("16");
+        log("16");
         throw new Error("Where am I?");
       });
     });
   });
 
   requestAnimationFrame(() => {
-    actions.push("11");
+    log("11");
     resolve(() => {
-      actions.push("12");
+      log("12");
     });
   });
 
   setTimeout(() => {
-    actions.push("7");
+    log("7");
     resolve(() => {
-      actions.push("8");
+      log("8");
     });
   });
 
   setTimeout(() => {
-    actions.push("13");
+    log("13");
     resolve(() => {
-      actions.push("14");
+      log("14");
     });
   }, 20);
 
   resolve(() => {
-    actions.push("1");
+    log("1");
     resolve(() => {
-      actions.push("3");
+      log("3");
       resolve(() => {
-        actions.push("6");
+        log("6");
       });
     });
     resolve(() => {
-      actions.push("4");
+      log("4");
     });
   });
 
   resolve(() => {
-    actions.push("2");
+    log("2");
     resolve(() => {
-      actions.push("5");
+      log("5");
     });
   });
 }
